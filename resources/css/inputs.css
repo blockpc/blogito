@@ -1,0 +1,27 @@
+/* inputs.css */
+.label {
+    @apply block text-sm font-medium text-gray-700;
+}
+.label-checkbox {
+    @apply inline-flex items-center mr-3;
+}
+
+.is-invalid {
+    @apply border-red-500;
+}
+.text-error {
+    @apply flex items-center font-medium tracking-wide text-red-500 text-xs mt-1 ml-1;
+}
+
+.input-form {
+    @apply h-8 mt-1 block w-full shadow-sm sm:text-sm border rounded-md;
+}
+.input-form:focus {
+    @apply focus:border-indigo-500 focus:ring-indigo-500;
+}
+.select-form {
+    @apply text-sm text-gray-600 font-semibold appearance-none border border-gray-300 border-solid inline-block py-3 pl-3 pr-8 rounded-md leading-tight w-full;
+}
+.textarea {
+    @apply mt-1 block w-full shadow-sm sm:text-sm border rounded-md;
+}

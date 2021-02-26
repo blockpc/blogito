@@ -1,0 +1,2 @@
+<!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
+<a href="{{ route('dashboard') }}" class="{{ route_active('dashboard') }} navbar-link">Dashboard</a>

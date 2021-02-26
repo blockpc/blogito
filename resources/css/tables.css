@@ -1,0 +1,13 @@
+/* tables.css */
+.tr {
+    @apply flex items-center;
+}
+.th {
+    @apply px-4 py-3 text-sm font-semibold text-gray-700 uppercase tracking-wider;
+}
+.td {
+    @apply px-2 py-1 text-sm text-gray-700 tracking-wider;
+}
+.table td {
+    @apply align-middle;
+}
