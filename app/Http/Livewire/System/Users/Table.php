@@ -139,7 +139,7 @@ class Table extends Component
             'email' => ['required', Rule::unique('users', 'email')],
             'firstname' => 'required|max:128',
             'lastname' => 'required|max:128',
-            'phone' => ['required', 'regex:/^([0-9\s\-\+\(\)]*)$/', 'min:8'],
+            'phone' => ['nullable', 'regex:/^([0-9\s\-\+\(\)]*)$/', 'min:8'],
         ];
     }
 

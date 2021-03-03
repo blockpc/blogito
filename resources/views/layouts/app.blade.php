@@ -70,6 +70,10 @@
                 <li><a href="#">Política de Privacidad</a></li>
             </ul>
         </footer>
+        @livewireScripts
+        @jquery
+        @toastr_js
+        @toastr_render
         @stack('scripts')
         <script>
             window.addEventListener('alert', event => { 
@@ -84,9 +88,5 @@
                 element.remove();
             }
         </script>
-        @livewireScripts
-        @jquery
-        @toastr_js
-        @toastr_render
     </body>
 </html>

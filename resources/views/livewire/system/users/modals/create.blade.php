@@ -9,8 +9,8 @@
                 <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
                     <div class="">
                         <div class="block px-4 pb-2">
-                            <label for="name" class="label">{{__('Name')}}</label>
-                            <input wire:model.lazy="name" type="text" name="name" id="name" class="input-form @error('name') is-invalid @enderror" value="{{ old('name') }}" placeholder="{{__('Name')}}">
+                            <label for="name" class="label">{{__('Alias')}}</label>
+                            <input wire:model.lazy="name" type="text" name="name" id="name" class="input-form @error('name') is-invalid @enderror" value="{{ old('name') }}" placeholder="{{__('Alias')}}">
                             @error('name') <span class="text-error">{{ $message }}</span> @enderror
                         </div>
                         <div class="block px-4 pb-2">

@@ -17,4 +17,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/blog', [BlogController::class, 'index'])->name('blog.post.index');
+
 require __DIR__.'/auth.php';

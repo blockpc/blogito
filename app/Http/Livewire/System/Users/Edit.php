@@ -49,10 +49,19 @@ class Edit extends Component
 
     public function getPermissionsProperty()
     {
-        if ( $this->user->hasRole('sudo')) {
-            return Permission::all()->orderBy('name')->pluck('name', 'id');
+        if ( current_user()->hasRole('sudo') ) {
+            $permissions = Permission::all();
+        } else {
+            $permissions = Permission::whereNotIn('name', $this->solo_super_admins)->get();
         }
-        return Permission::whereNotIn('name', $this->solo_super_admins)->orderBy('name')->pluck('name', 'id');
+        $retorno = [];
+        foreach($permissions->groupBy('key') as $group => $collection) {
+            $retorno[$group] = [];
+            foreach($collection as $permiso) {
+                $retorno[$group][$permiso->id] = $permiso->name;
+            }
+        }
+        return $retorno;
     }
 
     public function render()
@@ -68,9 +77,8 @@ class Edit extends Component
         $this->validate();
         $this->user->save();
         $this->profile->save();
-        $this->dispatchBrowserEvent('alert', 
-            ['type' => 'success', 'message' => "Se actualizo la información del usuario", 'title' => 'Información Usuario']
-        );
+        session()->flash('success', "Se actualizo la información del usuario <b>{$this->user->profile->fullname}</b>");
+        return redirect()->route('users.index');
     }
 
     public function change_password()

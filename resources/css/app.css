@@ -5,3 +5,9 @@
 @import './buttons.css';
 @import './inputs.css';
 @import './tables.css';
+@import './navbars.css';
+
+button:disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+}

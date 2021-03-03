@@ -40,7 +40,7 @@
                         </td>
                     </tr>
                 @empty
-                    <tr><td colspan="4">Sin roles registrados</td></tr>
+                    <tr><td class="td text-center" colspan="5">Sin roles registrados</td></tr>
                 @endforelse
             </tbody>
         </table>

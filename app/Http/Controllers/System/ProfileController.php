@@ -81,7 +81,10 @@ class ProfileController extends Controller
                 $image->delete();
             }
             $path = $request->file('logo')->storeAs("photo_profiles", "{$user->name}.{$extension}", 'public');
-            $image->create(['url' => "/storage/{$path}"]);
+            $image->create([
+                'name' => $user->name,
+                'url' => "/storage/{$path}",
+            ]);
             toastr("La imagen del usuario fue actualizada", 'success', 'Cambio de Imagen');
             return redirect()->route('profiles.index')->with("success", "La imagen del usuario fue actualizada");
         } else {

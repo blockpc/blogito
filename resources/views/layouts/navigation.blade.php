@@ -30,14 +30,14 @@
                 </div>
             </div>
 
-            <!-- Profile -->
-            <div class="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
-                <!-- btn notifications -->
-                <a href="#" class="bg-gray-800 px-2 mx-1 rounded-full text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white" title="{{__('Notifications')}}">
-                    <span class="sr-only">{{__('Notifications')}}</span>
-                    <!-- Heroicon name: outline/bell -->
-                    <div style="font-size: 1rem;"><i class="fas fa-bell"></i></div>
+            <!-- Right Side -->
+            <div class="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0" x-data="{ 'showNewPost': false }" @keydown.escape="showNewPost = false" x-cloak>
+                <!-- btn new article -->
+                <a href="#" class="bg-gray-800 px-2 mx-1 rounded-full text-gray-400 hover:text-white focus:outline-none" title="{{__('New Article')}}" @click="showNewPost = true">
+                    <span class="sr-only">{{__('New Article')}}</span>
+                    <div style="font-size: 1rem;"><i class="fa fa-pencil"></i></div>
                 </a>
+                @include('partials.new-post')
                 <!-- btn notifications -->
                 <a href="{{ route('jobs.index') }}" class="bg-gray-800 px-2 mx-1 rounded-full text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white" title="{{__('Jobs')}}">
                     <span class="sr-only">{{__('Jobs')}}</span>
