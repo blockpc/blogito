@@ -5,7 +5,7 @@
 @section('content')
 <div class="" x-data="{modal:false, mobile:false}">
     <div class="inline-block w-full pb-2">
-        <button class="btn-sm btn-primary-border w-full sm:w-auto" x-on:click="modal=true"><i class="fas fa-eye"></i> Vista Previa</button>
+        <button type="button" class="btn-sm btn-primary-border w-full sm:w-auto" x-on:click="modal=true"><i class="fas fa-eye"></i> Vista Previa</button>
     </div>
     <div x-data="{ tab: window.location.hash ? window.location.hash : '#article-information' }" class="">
         <div class="flex flex-row justify-between pb-4">
@@ -81,13 +81,13 @@
                 <div class="md:col-span-2">
                     <form method="POST" action="{{ route('proyect.post.content', $post) }}" id="article-content">
                         @csrf
-                        <input type="hidden" name="body" id="body">
-                        
+                        <textarea name="body" id="editor">{!! html_entity_decode($post->body) !!}</textarea>
                         <button type="submit" class="btn-sm btn-submit mt-2">{{__('Save Content')}}</button>
                     </form>
                 </div>
                 <div class="md:col-span-1">
-                    <div class="text-xs sm:text-sm p-2 rounded whitespace-normal" id="preview">
+                    <h1 class="editor-h1">Vista Previa</h1>
+                    <div class="text-xs sm:text-sm p-2 rounded whitespace-normal ck-content" id="preview">
                         {!!$post->body!!}
                     </div>
                 </div>
@@ -95,7 +95,6 @@
             {{-- article-images --}}
             <div class="md:grid md:grid-cols-3 md:gap-6" x-show="tab == '#article-images'" x-cloak>
                 <div class="md:col-span-3">
-                    <h2 class="text-base sm:text-3xl mt-2 mb-2">Drag &amp; Drop File Uploading using Laravel 8 Dropzone JS</h2>
                     <div class="border border-dashed border-gray-500 relative m-4 pb-2">
                         <form action="{{ route('dropzone.store', $post) }}" method="post" enctype="multipart/form-data" id="dropzone" class="dropzone">
                             @csrf
@@ -162,9 +161,8 @@
                     </main>
                 </div>
                 <article class="h-full flex items-center p-6">
-                    <div class="w-full">
+                    <div class="w-full ck-content">
                         {!!$post->body!!}
-                        {{-- {!! nl2br(e($post->body)) !!} --}}
                     </div>
                 </article>
             </div>
@@ -176,14 +174,12 @@
 @push('styles')
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.7.1/basic.min.css" integrity="sha512-MeagJSJBgWB9n+Sggsr/vKMRFJWs+OUphiDV7TJiYu+TNQD9RtVJaPDYP8hA/PAjwRnkdvU+NsTncYTKlltgiw==" crossorigin="anonymous" />
 <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
-<style>
-    
-</style>
 @endpush
 
 @push('scripts')
 <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.7.1/min/dropzone.min.js" integrity="sha512-En/Po50Bl8kIECa2WkhxhdYeoKDcrJpBKMo9tmbuwbm9RxHWZV8/Y5xM9sh3QbrnFgM3hVR/2umJ33qGJk45pQ==" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+<script src="{{ asset('js/ckeditor.js') }}"></script>
 <script>
     Dropzone.options.dropzone = {
         maxFilesize : 1,
@@ -249,5 +245,63 @@
             console.error('finally delete image')
         })
     }
+    ClassicEditor
+        .create( document.querySelector( '#editor' ), {
+            toolbar: {
+                items: [
+                    'heading', '|',
+                    'bold', 'underline', 'italic', 'link', '|',
+                    'bulletedList', 'numberedList', 'alignment', '|', 
+                    'blockQuote', 'imageUpload', 'insertTable', 'mediaEmbed', 'highlight', 'codeBlock', '|',
+                    'undo', 'redo'
+                ]
+            },
+            heading: {
+                options: [
+                    { model: 'paragraph', title: 'Paragraph', class: 'ck-heading_paragraph' },
+                    { model: 'heading2', view: {name:'h2', classes: 'editor-h2'}, title: 'Heading 2', class: 'ck-heading_heading2' },
+                    { model: 'heading3', view: {name:'h3', classes: 'editor-h3'}, title: 'Heading 3', class: 'ck-heading_heading3' },
+                    { model: 'heading4', view: {name:'h4', classes: 'editor-h4'}, title: 'Heading 4', class: 'ck-heading_heading4' },
+                ]
+            },
+            alignment: {
+                options: [ 'left', 'center', 'right' ]
+            },
+            image: {
+                toolbar: [
+                    'imageTextAlternative',
+                    'imageStyle:full',
+                    'imageStyle:side'
+                ]
+            },
+            table: {
+                contentToolbar: [
+                    'tableColumn',
+                    'tableRow',
+                    'mergeTableCells'
+                ]
+            },
+            link: {
+                addTargetToExternalLinks: true,
+            },
+            codeBlock: {
+                languages: [
+                    { language: 'plaintext', label: 'Plain text', class: '' },
+                    { language: 'css', label: 'CSS', class: 'css' },
+                    { language: 'html', label: 'HTML', class: 'html' },
+                    { language: 'php', label: 'PHP', class: 'php'  },
+                    { language: 'javascript', label: 'JavaScript', class: 'js' },
+                ]
+            },
+            licenseKey: '',
+        })
+        .then( editor => {
+            window.editor = editor;
+            // console.log( Array.from( editor.ui.componentFactory.names() ) );
+            console.log('ok');
+        } )
+        .catch( error => {
+            console.error( error );
+        } );
 </script>
 @endpush

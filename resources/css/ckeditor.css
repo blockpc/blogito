@@ -1,0 +1,13 @@
+/* ckeditor.css */
+.editor-h1 {
+    @apply text-2xl font-bold py-2;
+}
+.editor-h2 {
+    @apply text-xl font-bold py-2;
+}
+.editor-h3 {
+    @apply text-lg font-bold py-2;
+}
+.editor-h4 {
+    @apply text-base font-bold py-2;
+}

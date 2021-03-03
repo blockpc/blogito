@@ -6,6 +6,7 @@
 @import './inputs.css';
 @import './tables.css';
 @import './navbars.css';
+@import './ckeditor.css';
 
 button:disabled {
     cursor: not-allowed;

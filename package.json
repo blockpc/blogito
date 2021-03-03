@@ -10,6 +10,7 @@
         "production": "mix --production"
     },
     "devDependencies": {
+        "@ckeditor/ckeditor5-alignment": "^26.0.0",
         "@tailwindcss/forms": "^0.2.1",
         "alpinejs": "^2.7.3",
         "autoprefixer": "^10.1.0",
@@ -21,6 +22,9 @@
         "tailwindcss": "^2.0.2"
     },
     "dependencies": {
+        "@ckeditor/ckeditor5-code-block": "^26.0.0",
+        "highlight.js": "^10.6.0",
+        "highlightjs-line-numbers.js": "^2.8.0",
         "tailwindcss-tables": "^0.4.0"
     }
 }
