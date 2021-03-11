@@ -17,6 +17,15 @@ if (! function_exists('route_active') ) {
     }
 }
 
+if (! function_exists('route_active_frontend') ) {
+    function route_active_frontend(string $route_name) {
+        if ( !$route_name )
+            return "";
+        $route = Route::current()->getName();
+        return Str::contains($route, $route_name) ? 'bg-gray-900 text-white' : 'text-gray-800 hover:bg-gray-700 hover:text-gray-300';
+    }
+}
+
 if (! function_exists('image_profile') ) {
     function image_profile($user = null) {
         $user = $user ?? auth()->user();

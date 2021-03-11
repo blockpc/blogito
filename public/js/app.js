@@ -3809,13 +3809,6 @@ __webpack_require__(/*! alpinejs */ "./node_modules/alpinejs/dist/alpine.js");
 
 document.addEventListener('DOMContentLoaded', function (event) {
   document.querySelectorAll('pre code').forEach(function (block) {
-    // console.log(
-    //     block.parentElement.parentElement,
-    //     block.parentElement.parentElement.classList.contains('ck'),
-    // );
-    // if ( block.parentElement.parentElement.classList.contains('ck') ) {
-    //     return;
-    // }
     highlight_js__WEBPACK_IMPORTED_MODULE_0___default().highlightBlock(block);
   });
 });

@@ -44,37 +44,29 @@ class PostController extends Controller
         return view('proyect.posts.edit', compact('post'));
     }
 
-    public function update(Request $request, Post $post)
-    {
-        $data = $this->validate($request, [
-            'title' => 'required|max:128|unique:posts,title,'.$post->id,
-            'resume' => 'nullable|string|max:255',
-            'category_id' => 'nullable|exists:categories,id',
-            'image' => 'image|max:255|mimes:jpeg,jpg,png|max:2048',
-            'tags' => 'nullable|array',
-            'tags.*' => 'exists:tags,id',
-        ]);
-        $post->title = $request->title;
-        $post->resume = $request->resume;
-        $post->category_id = $request->category_id;
-        $post->save();
-        $post->tags()->sync($request->input('tags'));
-        if ( $request->file('image') ) {
-            $extension = $request->file('image')->extension();
-            $path = $request->file('image')->storeAs("photo_articles", "{$post->url}.{$extension}", 'public');
-            $post->image = "/storage/{$path}";
-            $post->save();
-        }
-        toastr("El articulo fue actualizado", 'success', 'Articulo Actualizado');
-        return redirect()->route('proyect.post.edit', $post)
-            ->with("success", "El articulo fue actualizado");
-    }
-
-    public function content(Request $request, Post $post)
-    {
-        //dd(request('body'), request('attachment-post-trixFields'));
-        $post->body = request('body');
-        $post->save();
-        return redirect(route('proyect.post.edit', $post). '#article-content');
-    }
+    // public function update(Request $request, Post $post)
+    // {
+    //     $data = $this->validate($request, [
+    //         'title' => 'required|max:128|unique:posts,title,'.$post->id,
+    //         'resume' => 'nullable|string|max:255',
+    //         'category_id' => 'nullable|exists:categories,id',
+    //         'image' => 'image|max:255|mimes:jpeg,jpg,png|max:2048',
+    //         'tags' => 'nullable|array',
+    //         'tags.*' => 'exists:tags,id',
+    //     ]);
+    //     $post->title = $request->title;
+    //     $post->resume = $request->resume;
+    //     $post->category_id = $request->category_id;
+    //     $post->save();
+    //     $post->tags()->sync($request->input('tags'));
+    //     if ( $request->file('image') ) {
+    //         $extension = $request->file('image')->extension();
+    //         $path = $request->file('image')->storeAs("photo_articles", "{$post->url}.{$extension}", 'public');
+    //         $post->image = "/storage/{$path}";
+    //         $post->save();
+    //     }
+    //     toastr("El articulo fue actualizado", 'success', 'Articulo Actualizado');
+    //     return redirect()->route('proyect.post.edit', $post)
+    //         ->with("success", "El articulo fue actualizado");
+    // }
 }

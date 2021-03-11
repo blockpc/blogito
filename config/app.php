@@ -168,6 +168,7 @@ return [
         Laraveles\Spanish\SpanishServiceProvider::class,
         Yoeunes\Toastr\ToastrServiceProvider::class,
         Spatie\Permission\PermissionServiceProvider::class,
+        Jenssegers\Date\DateServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -230,6 +231,7 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
 
+        'Date' => Jenssegers\Date\Date::class,
     ],
 
 ];

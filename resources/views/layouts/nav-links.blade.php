@@ -9,5 +9,6 @@
         <a href="{{ route('proyect.post.index') }}" class="block px-4 py-2 text-sm text-gray-100 hover:bg-gray-600" role="menuitem">{{__('Articles')}}</a>
         <a href="{{ route('proyect.category.index') }}" class="block px-4 py-2 text-sm text-gray-100 hover:bg-gray-600" role="menuitem">{{__('Categories')}}</a>
         <a href="{{ route('proyect.tag.index') }}" class="block px-4 py-2 text-sm text-gray-100 hover:bg-gray-600" role="menuitem">{{__('Tags')}}</a>
+        <a href="{{ route('proyect.type.index') }}" class="block px-4 py-2 text-sm text-gray-100 hover:bg-gray-600" role="menuitem">{{__('Blocks')}}</a>
     </div>
 </div>

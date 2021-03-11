@@ -61,8 +61,8 @@
                             <img class="image_profile h-8 w-8 rounded-full" src="{!! image_profile(current_user()) !!}" alt="current_user()->profile->fullname">
                         </button>
                     </div>
-                    <div x-show="open" class="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5" role="menu" aria-orientation="vertical" aria-labelledby="user-menu">
-                        <a href="{{ route('profiles.index') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">{{__('Your Profile')}}</a>
+                    <div x-show="open" class="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-gray-800 ring-1 ring-black ring-opacity-5" role="menu" aria-orientation="vertical" aria-labelledby="user-menu">
+                        <a href="{{ route('profiles.index') }}" class="block px-4 py-2 text-sm text-gray-100 hover:bg-gray-600" role="menuitem">{{__('Your Profile')}}</a>
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf
                             <x-dropdown-link :href="route('logout')" onclick="event.preventDefault(); this.closest('form').submit();">

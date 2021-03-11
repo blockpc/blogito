@@ -11,23 +11,28 @@ class Table extends Component
 {
     use WithPagination;
     public $search = "", $paginate = 5;
-    public $color = "primary", $texto = "New Article", $modal;
+    public $color = "primary", $texto = "New Article", $modal, $preview;
 
     public $title, $resume;
 
     public User $user;
+    public Post $post;
+
+    protected $listeners = ['toggle_preview'];
 
     public function mount(User $user)
     {
         $this->user = $user;
         $this->modal = 0;
+        $this->post = new Post;
+        $this->preview = 0;
         $this->title = "";
         $this->resume = "";
     }
 
     public function getPostsProperty()
     {
-        return Post::paginate($this->paginate);
+        return Post::withCount('blocks')->whereLike('title', $this->search)->paginate($this->paginate);
     }
 
     public function render()
@@ -42,11 +47,22 @@ class Table extends Component
         $this->reset('color', 'texto', 'title', 'resume');
         $this->resetValidation();
         $this->modal = 0;
+        $this->preview = 0;
     }
 
     public function toggle_modal()
     {
         $this->modal = !$this->modal;
+    }
+
+    public function toggle_preview(Post $post)
+    {
+        if ( $this->preview ) {
+            $this->preview = 0;
+        } else {
+            $this->post = $post;
+            $this->preview = 1;
+        }
     }
 
     public function submit()

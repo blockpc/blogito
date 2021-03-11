@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Models\Job;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Arr;
 use Illuminate\Support\ServiceProvider;
@@ -54,5 +55,7 @@ class AppServiceProvider extends ServiceProvider
             });
             return $this;
         });
+
+        Carbon::setLocale(config('app.locale'));
     }
 }

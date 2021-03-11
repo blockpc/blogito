@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Traits\DatesTranslator;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -9,10 +10,10 @@ use Illuminate\Support\Str;
 
 class Post extends Model
 {
-    use HasFactory;
+    use HasFactory, DatesTranslator;
 
     protected $fillable = [
-        'title', 'url', 'body', 'category_id', 'resume', 'published_at', 'user_id'
+        'title', 'url', 'category_id', 'resume', 'published_at', 'user_id'
     ];
 
     protected $dates = ['published_at'];
@@ -56,5 +57,10 @@ class Post extends Model
     {
         $this->attributes['title'] = $title;
         $this->attributes['url'] = Str::slug($title);
+    }
+
+    public function blocks()
+    {
+        return $this->hasMany(Block::class);
     }
 }

@@ -22,7 +22,7 @@ class CreateCategoriesTable extends Migration
         });
 
         Schema::table('posts', function (Blueprint $table) {
-            $table->foreignId('category_id')->after('body')->nullable()->constrained();
+            $table->foreignId('category_id')->nullable()->constrained();
         });
     }
 
