@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "59c9fa2e1e1e5df77cd8d3380c4ff79a",
+    "content-hash": "a8e6edb2869ddec5c8bc1408a13b409a",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -4969,6 +4969,78 @@
                 }
             ],
             "time": "2021-01-27T10:15:41+00:00"
+        },
+        {
+            "name": "testmonitor/eloquent-incrementable",
+            "version": "3.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/testmonitor/eloquent-incrementable.git",
+                "reference": "bbbf1c707e65e393c2c736fa6dc27e7322fa241c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/testmonitor/eloquent-incrementable/zipball/bbbf1c707e65e393c2c736fa6dc27e7322fa241c",
+                "reference": "bbbf1c707e65e393c2c736fa6dc27e7322fa241c",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/config": "^8.0",
+                "illuminate/database": "^8.0",
+                "illuminate/support": "^8.0",
+                "php": "^7.4|^8.0"
+            },
+            "require-dev": {
+                "codedungeon/phpunit-result-printer": "^0.30.0",
+                "orchestra/database": "6.x-dev",
+                "orchestra/testbench": "^6.0",
+                "phpunit/phpunit": "^9.0",
+                "squizlabs/php_codesniffer": "3.*"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "TestMonitor\\Incrementable\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Thijs Kok",
+                    "email": "tkok@testmonitor.com",
+                    "homepage": "https://www.testmonitor.com/",
+                    "role": "Lead Developer"
+                },
+                {
+                    "name": "Stephan Grootveld",
+                    "email": "sgrootveld@testmonitor.com",
+                    "homepage": "https://www.testmonitor.com/",
+                    "role": "Developer"
+                },
+                {
+                    "name": "Frank Keulen",
+                    "email": "fkeulen@testmonitor.com",
+                    "homepage": "https://www.testmonitor.com/",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Define a custom auto-increment field in your Eloquent model, that is determined through PHP rather than your database engine.",
+            "keywords": [
+                "count",
+                "eloquent",
+                "increment",
+                "laravel",
+                "model",
+                "testmonitor"
+            ],
+            "support": {
+                "issues": "https://github.com/testmonitor/eloquent-incrementable/issues",
+                "source": "https://github.com/testmonitor/eloquent-incrementable/tree/3.0.0"
+            },
+            "time": "2021-01-07T12:04:14+00:00"
         },
         {
             "name": "tijsverkoyen/css-to-inline-styles",

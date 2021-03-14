@@ -15,7 +15,10 @@ class CreateBlocksTable extends Migration
     {
         Schema::create('blocks', function (Blueprint $table) {
             $table->id();
+            $table->string('title', 128)->nullable();
             $table->text('content');
+            $table->string('legend', 128)->nullable();
+            $table->integer('position');
             $table->foreignId('type_id')->constrained()->cascadeOnDelete();
             $table->foreignId('post_id')->constrained()->cascadeOnDelete();
             $table->timestamps();
@@ -30,7 +33,8 @@ class CreateBlocksTable extends Migration
     public function down()
     {
         Schema::table('blocks', function (Blueprint $table) {
-            $table->dropForeign(['type_id', 'post_id']);
+            $table->dropForeign('type_id');
+            $table->dropForeign('post_id');
         });
         Schema::dropIfExists('blocks');
     }

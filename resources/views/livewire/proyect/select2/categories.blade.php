@@ -12,7 +12,19 @@
 @push('scripts')
     <script>
     $(document).ready(function() {
-        $('#category2').select2();
+        $('#category2').select2({
+            createTag: function (params) {
+                var term = $.trim(params.term);
+                if (term === '') {
+                    return null;
+                }
+                return {
+                    id: term,
+                    text: term,
+                    newTag: true // add additional parameters
+                }
+            }
+        });
         $('#category2').on('change', function (e) {
             var data = $('#category2').select2("val");
             @this.set('category', data);

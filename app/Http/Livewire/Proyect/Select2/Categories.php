@@ -23,7 +23,7 @@ class Categories extends Component
 
     public function getCategoriesProperty()
     {
-        return Category::whereLike('name', $this->search)->paginate($this->paginate);
+        return Category::whereLike('name', $this->search)->get();
     }
 
     public function render()

@@ -5,7 +5,7 @@
                 <div class="absolute inset-0 bg-gray-500 opacity-75"></div>
             </div>
             <span class="hidden sm:inline-block sm:align-middle sm:h-screen"></span>​
-            <div class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle  sm:w-full p-4" role="dialog" aria-modal="true" aria-labelledby="modal-headline" :class="{ 'sm:max-w-lg': !mobile }">
+            <div class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle w-full p-4" role="dialog" aria-modal="true" aria-labelledby="modal-headline" :class="{ 'md:w-9/12 lg:w-8/12': !mobile }">
                 <div class="flex justify-between w-full pb-2">
                     <h1 class="text-lg font-semibold">{{__('Article Preview')}}</h1>
                     <div>
@@ -26,7 +26,10 @@
                     "
                     @endif
                 >
-                    <main class="h-full flex items-center p-6 lg:p-12 text-gray-700">
+                    <main class="w-full md:w-9/12 lg:w-8/12 mx-auto flex items-center p-6 lg:p-12 text-gray-700 relative">
+                        <div class="absolute right-0 top-2 badge-sm badge-success z-20">
+                            <a class="text-sm font-semibold p-1 mx-2" href="#">{{$post->category->name}}</a>
+                        </div>
                         <section class="w-full md:w-9/12 xl:w-10/12">
                             <p class="text-xs font-bold mb-2 text-gray-700">{{$post->created_at->format('j F, Y')}}</p>
                             <h1 class="text-2xl lg:text-4xl font-bold pb-2 text-gray-200">
@@ -36,11 +39,11 @@
                         </section>
                     </main>
                 </div>
-                <article class="h-full flex items-center p-6">
-                    <div class="w-full ck-content">
+                <article class="flex items-center p-6 font-sans">
+                    <div class="w-full md:w-9/12 lg:w-8/12 mx-auto">
                         @foreach ($post->blocks as $item)
                         <div class="p-1">
-                            {!! html_entity_decode($item->type->start) !!}{!! html_entity_decode($item->content) !!}{!! html_entity_decode($item->type->end) !!}
+                            {!! html_entity_decode($item->type->start) !!}{{$item->content}}{!! html_entity_decode($item->type->end) !!}
                         </div>
                         @endforeach
                     </div>

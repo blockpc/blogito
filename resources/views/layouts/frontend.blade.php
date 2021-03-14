@@ -13,7 +13,6 @@
 
         <!-- Styles -->
         <link rel="stylesheet" href="{{ asset('css/app.css') }}">
-        <link rel="stylesheet" href="{{ asset('css/agate.css') }}">
         <script src="https://kit.fontawesome.com/bce0453467.js" crossorigin="anonymous"></script>
         <style>
             [x-cloak] {

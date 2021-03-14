@@ -24,7 +24,8 @@
   color: white;
   -webkit-text-size-adjust: none;
   /* nuevas propiedades */
-  line-height: 15px;
+  font-size: 0.75rem;
+  line-height: 20px;
   max-height: 300px;
   margin: .6em;
 }
@@ -139,4 +140,30 @@
 .hljs a:hover {
   color: inherit;
   text-decoration: underline;
+}
+
+.hljs-line-numbers {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+
+  text-align: center;
+  color: #ccc;
+  border-right: 1px solid #CCC;
+  vertical-align: top;
+  padding-right: 5px;
+
+  /* your custom style here */
+}
+/* for block of code */
+.hljs-ln-code {
+  padding-left: 10px;
+}
+.hljs-ln-n {
+  padding-right: 10px;
+  border-right: 1px solid cyan;
+  margin-right: 10px;
 }

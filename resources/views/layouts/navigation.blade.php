@@ -19,7 +19,7 @@
             <div class="flex-1 flex items-center justify-center sm:items-stretch sm:justify-start">
                 <div class="hidden sm:block">
                     <a href="{{ route('dashboard') }}">
-                        <img class="block h-8 w-auto" src="{{ asset('img/mini-logo.png') }}" alt="Workflow">
+                        <img class="block h-8 w-auto" src="{{ asset('img/logo50x50.png') }}" alt="Workflow">
                     </a>
                 </div>
                 <!-- Content nav -->

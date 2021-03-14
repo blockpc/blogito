@@ -61,6 +61,6 @@ class Post extends Model
 
     public function blocks()
     {
-        return $this->hasMany(Block::class);
+        return $this->hasMany(Block::class)->orderBy('position');
     }
 }

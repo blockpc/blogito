@@ -27,7 +27,7 @@
         <div class="bg-gray-100">
             <div class="flex justify-center py-2 bg-gray-800 sm:hidden">
                 <a class="flex flex-row" href="{{ route('dashboard') }}">
-                    <img class="block h-8 w-auto" src="{{ asset('img/mini-logo.png') }}" alt="Workflow">
+                    <img class="block h-8 w-auto" src="{{ asset('img/logo50x50.png') }}" alt="Workflow">
                     <span class="text-gray-400 text-xl pl-3 font-bold">{{ config('app.name', 'Laravel') }}</span>
                 </a>
             </div>
@@ -64,7 +64,7 @@
             </main>
         </div>
         <footer class="h-32 flex justify-center items-center">
-            <a class="px-6" href="/"><img class="h-16 w-16 rounded" id="footer-logo" src="{{ asset('img/mini-logo.png') }}"></a>
+            <a class="px-6" href="/"><img class="h-16 w-16 rounded" id="footer-logo" src="{{ asset('img/logo50x50.png') }}"></a>
             <ul class="master-footer-list">
                 <li><span>© 2021 – BlockPC {{__('All rights reserved.')}}</span></li>
                 <li><a href="#">Política de Privacidad</a></li>

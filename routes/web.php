@@ -22,5 +22,7 @@ Route::post('/contacto/send', [PageController::class, 'send'])->name('contact.se
 
 Route::get('/blog', [BlogController::class, 'index'])->name('blog.index');
 Route::get('/blog/{post}', [BlogController::class, 'show'])->name('blog.show');
+Route::get('/blog/categorias/{category}', [BlogController::class, 'category'])->name('blog.categories');
+Route::get('/blog/etiqueta/{tag}', [BlogController::class, 'tag'])->name('blog.tags');
 
 require __DIR__.'/auth.php';

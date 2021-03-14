@@ -24,9 +24,10 @@ class BlockFactory extends Factory
     public function definition()
     {
         return [
+            'title' => $this->faker->words(4, true),
             'content' => $this->faker->paragraphs(3, true),
+            'legend' => $this->faker->words(4, true),
             'type_id' => Type::all()->random()->id,
-            //'post_id' => Post::all()->random()->id,
         ];
     }
 }

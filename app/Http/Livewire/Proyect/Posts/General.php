@@ -29,12 +29,12 @@ class General extends Component
 
     public function getCategoriesProperty()
     {
-        return Category::whereLike('name', $this->searchCategory)->paginate(5);
+        return Category::whereLike('name', $this->searchCategory)->get();
     }
 
     public function getTagsProperty()
     {
-        return Tag::whereLike('name', $this->searchTag)->paginate(5);
+        return Tag::whereLike('name', $this->searchTag)->get();
     }
 
     public function render()

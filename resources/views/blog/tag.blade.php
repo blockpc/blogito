@@ -6,7 +6,7 @@
 <div class="flex flex-col justify-around h-screen-mobile sm:h-screen-nav">
     <div class="w-full md:w-9/12 lg:w-8/12 mx-auto px-6 sm:px-12">
         <div class="py-3 sm:py-6 space-y-2 md:space-y-5">
-            <h1 class="text-xl font-extrabold text-gray-900 sm:text-2xl md:text-4xl">Últimos Articulos</h1>
+            <h1 class="text-xl font-extrabold text-gray-900 sm:text-2xl md:text-4xl">Articulos Etiqueta #{{Str::title($tag->name)}}</h1>
             <p class="text-base sm:text-lg text-gray-500">All the latest Tailwind CSS news, straight from the team.</p>
         </div>
     </div>
@@ -17,7 +17,7 @@
         @include('blog._tags')
     @endif
     <div class="px-1">
-        @include('partials.slider', ['latest' => $latest])
+        @include('partials.slider', ['latest' => $posts])
     </div>
 </div>
 <div class="w-full md:w-9/12 lg:w-8/12 mx-auto px-6 sm:px-12 pb-6">
@@ -27,7 +27,7 @@
             <article class="space-y-2 sm:grid sm:grid-cols-4 sm:space-y-0 sm:items-baseline">
                 <dl>
                     <dt class="sr-only">{{__('Published on')}}</dt>
-                    <dd class="text-sm sm:text-base leading-6 font-medium text-gray-500">
+                    <dd class="text-base leading-6 font-medium text-gray-500">
                         <time datetime="2021-03-08T19:00:00.0Z">{{$item->created_at->format('j F, Y')}}</time>
                     </dd>
                 </dl>
@@ -42,11 +42,9 @@
                     </div>
                     <div class="text-base leading-6 font-medium">
                         <a class="text-teal-500 hover:text-teal-600" aria-label="{{$item->title}}" href="{{ route('blog.show', $item) }}">{{__('Read more')}} →</a>
-                        @if ($item->category)
-                            <a class="float-right badge-xs badge-success" href="{{ route('blog.categories', $item->category) }}" title="{{Str::title($item->category->description)}}">{{$item->category->name}}</a>
-                            @if ($item->tags->count())
-                                @include('blog._tags_post')
-                            @endif
+                        <a class="float-right badge-xs badge-success" href="{{ route('blog.categories', $item->category) }}" title="{{Str::title($item->category->description)}}">{{$item->category->name}}</a>
+                        @if ($item->tags->count())
+                            @include('blog._tags_post')
                         @endif
                     </div>
                 </div>

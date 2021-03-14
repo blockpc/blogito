@@ -19,10 +19,11 @@ Route::group([
 
     Route::post('/dropzone/store/{post}', [DropzoneController::class, 'store'])->name('dropzone.store');
     Route::post('/dropzone/destroy', [DropzoneController::class, 'destroy'])->name('dropzone.destroy');
+    Route::post('/dropzone/update/image/{image}', [DropzoneController::class, 'update'])->name('dropzone.update');
 
     Route::get('/articulos', [PostController::class, 'index'])->name('proyect.post.index');
     Route::post('/articulos/store_fast', [PostController::class, 'store_fast'])->name('proyect.post.store_fast');
     Route::post('/articulos/store', [PostController::class, 'store'])->name('proyect.post.store');
     Route::get('/articulos/edit/{post}', [PostController::class, 'edit'])->name('proyect.post.edit');
-    //Route::put('/articulos/update/{post}', [PostController::class, 'update'])->name('proyect.post.update');
+
 });

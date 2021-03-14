@@ -14,6 +14,7 @@
                     <th class="th">{{__('Title')}}</th>
                     <th class="th">{{__('Resume')}}</th>
                     <th class="th text-center">{{__('Blocks')}}</th>
+                    <th class="th text-center">{{__('Images')}}</th>
                     <th class="th text-right">{{__('Actions')}}</th>
                 </tr>
             </thead>
@@ -23,6 +24,7 @@
                         <td class="td">{{$item->title}}</td>
                         <td class="td">{!! nl2br(e($item->resume)) !!}</td>
                         <td class="td text-center">{{$item->blocks_count}}</td>
+                        <td class="td text-center">{{$item->images_count}}</td>
                         <td class="td text-right">
                             <div class="flex flex-row justify-end" role="group">
                                 <a href="{{route('blog.show', $item->url)}}" target="_blank" class="btn-xs btn-primary-border mr-1">

@@ -1,7 +1,7 @@
 <div>
     <div class="flex flex-col justify-center items-center pt-2 pb-10 px-6">
-        <div class="w-full mx-auto relative" x-data="{ activeSlide: 1, slides: [1, 2, 3, 4, 5],
-            loop() { setInterval(() => { this.activeSlide = this.activeSlide === 5 ? 1 : this.activeSlide+1 }, 3000) }}"
+        <div class="w-full mx-auto relative" x-data="{ activeSlide: 1, slides: [{{ implode(',',range(1, $latest->count())) }}],
+            loop() { setInterval(() => { this.activeSlide = this.activeSlide === {{$latest->count()}} ? 1 : this.activeSlide+1 }, 3000) }}"
             x-init="loop">
             <!-- Slides -->
             <template x-for="slide in slides" :key="slide">
@@ -14,8 +14,8 @@
                             background-repeat: no-repeat;
                             background-blend-mode: multiply;" 
                             x-show="{{$loop->iteration}} == slide">
-                            <div class="absolute right-0 top-2 flex rounded-l-full z-20 bg-green-200 text-green-600">
-                                <a class="text-sm font-semibold p-1 mx-2" href="#">{{$item->category->name}}</a>
+                            <div class="absolute right-0 top-2 flex rounded-l-full z-20 bg-green-300 text-green-800">
+                                <a class="text-sm font-semibold p-1 mx-2" href="{{ route('blog.categories', $item->category) }}" title="{{Str::title($item->category->description)}}">{{$item->category->name}}</a>
                             </div>
                             <div class="absolute h-full flex items-center p-6 sm:p-8 lg:p-12 text-gray-700 z-10">
                                 <section class="w-full md:w-9/12 xl:w-10/12">
@@ -24,10 +24,17 @@
                                         {{$item->title}}
                                     </h1>
                                     <p class="text-xs lg:text-base font-normal mb-1 text-white">{{$item->resume}}</p>
+                                    @if ($item->tags->count())
+                                        <div class="z-20">
+                                            @foreach ($item->tags as $tag)
+                                                <a class="inline-block text-sm text-gray-200 font-semibold p-1" href="{{ route('blog.tags', $tag) }}" title="{{Str::title($tag->description)}}">#{{Str::title($tag->name)}}</a>
+                                            @endforeach
+                                        </div>
+                                    @endif
                                 </section>
                             </div>
                             <div class="absolute bottom-2 left-2 pl-6 sm:pl-8 lg:pl-12 z-20">
-                                <a class="text-xs sm:text-base font-bold text-white" href="{{ route('blog.show', $item) }}">{{__('Read more...')}}</a>
+                                <a class="text-xs sm:text-base font-bold text-white" href="{{ route('blog.show', $item) }}">{{__('Read more')}} →</a>
                             </div>
                         </div>
                     @endforeach

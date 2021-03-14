@@ -65,4 +65,29 @@ class DropzoneController extends Controller
             ['ok' => true]
         );
     }
+
+    public function update(Request $request, Image $image)
+    {
+        dd($request->id, $request->name, $image->id);
+        $validation = Validator::make( $request->all(), [
+            'id' => 'required|integer|exists:images,id|size:'.$image->id,
+            'name' => 'required|string|max:128'
+        ], [], [
+            'id' => 'imagen',
+            'name' => 'nombre',
+        ]);
+        if ($validation->fails()) {
+            $errors = $validation->getMessageBag()->all();
+            return response()->json(
+                ['ok' => false, 'errors' => $errors]
+            );
+        }
+        //$image = Image::find($request->id);
+        $image = Image::whereId($request->id)->first();
+        //dd($image);
+        $image->update(['name' => $request->name]);
+        return response()->json(
+            ['ok' => true, 'image' => $image]
+        );
+    }
 }

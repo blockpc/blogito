@@ -32,7 +32,7 @@ class Table extends Component
 
     public function getPostsProperty()
     {
-        return Post::withCount('blocks')->whereLike('title', $this->search)->paginate($this->paginate);
+        return Post::withCount(['blocks', 'images'])->whereLike('title', $this->search)->paginate($this->paginate);
     }
 
     public function render()

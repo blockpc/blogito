@@ -20,7 +20,6 @@ class CreatePostsTable extends Migration
             $table->string('resume', 255)->nullable();
             //$table->string('iframe')->nullable();
             $table->string('image')->nullable();
-            //$table->text('body')->nullable();
             $table->timestamp('published_at')->nullable();
             $table->foreignId('owner_id')->constrained('users')->onDelete('cascade');
             $table->timestamps();

@@ -6,15 +6,27 @@ use App\Models\Block;
 use App\Models\Post;
 use App\Models\Type;
 use App\Models\User;
+use App\Traits\Sortable;
 use Livewire\Component;
 
 class Content extends Component
 {
+    use Sortable;
+
     public $listeners = ['postUpdated'];
 
     public User $user;
     public Post $post;
     public ?Block $block;
+
+    public function updateBlockOrder($reordered)
+    {
+        $new_order = $this->reorder($reordered, $this->post->blocks);
+        foreach( $reordered as $index => $order) {
+            Block::where('id', $new_order[$index]->id)->update(['position' => $order['order']]);
+        }
+        $this->post->blocks = $new_order;
+    }
 
     public function mount(User $user, Post $post)
     {
@@ -103,13 +115,17 @@ class Content extends Component
     {
         $rules = [
             'block.type_id' => 'required|integer|exists:types,id',
+            'block.title' => 'nullable|string|max:128',
             'block.content' => 'required|string',
+            'block.legend' => 'nullable|string|max:128',
         ];
         return $rules;
     }
 
     protected $validationAttributes = [
         'block.type_id' => 'tipo block',
+        'block.title' => 'titulo',
         'block.content' => 'contenido',
+        'block.legend' => 'legend',
     ];
 }
