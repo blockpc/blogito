@@ -17,8 +17,9 @@ class CreateTypesTable extends Migration
             $table->id();
             $table->string('key');
             $table->string('name', 128)->unique();
-            $table->string('start', 128)->nullable;
-            $table->string('end', 128)->nullable;
+            $table->string('description')->nullable();
+            $table->string('start', 128)->nullable();
+            $table->string('end', 128)->nullable();
             $table->timestamps();
         });
     }

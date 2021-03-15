@@ -19,7 +19,7 @@
                             </div>
                             <div class="absolute h-full flex items-center p-6 sm:p-8 lg:p-12 text-gray-700 z-10">
                                 <section class="w-full md:w-9/12 xl:w-10/12">
-                                    <p class="text-xs font-bold mb-2 text-gray-300">{{$item->created_at->format('j F, Y')}}</p>
+                                    <p class="text-xs font-bold mb-2 text-gray-300">{{$item->published_at->format('j F, Y')}}</p>
                                     <h1 class="text-lg sm:text-2xl lg:text-4xl font-bold pb-2 text-gray-200">
                                         {{$item->title}}
                                     </h1>

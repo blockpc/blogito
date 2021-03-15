@@ -1,39 +1,28 @@
 <?php
 
+use App\Helpers\Blockpc;
 use Illuminate\Support\Str;
 
 if (! function_exists('current_user')) {
     function current_user() {
-        return auth()->user();
+        return Blockpc::current_user();
     }
 }
 
 if (! function_exists('route_active') ) {
     function route_active(string $route_name) {
-        if ( !$route_name )
-            return "";
-        $route = Route::current()->getName();
-        return Str::contains($route, $route_name) ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white';
+        return Blockpc::route_active($route_name);
     }
 }
 
 if (! function_exists('route_active_frontend') ) {
     function route_active_frontend(string $route_name) {
-        if ( !$route_name )
-            return "";
-        $route = Route::current()->getName();
-        return Str::contains($route, $route_name) ? 'bg-gray-900 text-white' : 'text-gray-800 hover:bg-gray-700 hover:text-gray-300';
+        return Blockpc::route_active_frontend($route_name);
     }
 }
 
 if (! function_exists('image_profile') ) {
     function image_profile($user = null) {
-        $user = $user ?? auth()->user();
-        if ( $image = $user->profile->image ) {
-            return $image->url;
-        } else {
-            $name = str_replace(" ", "+", $user->profile->fullName);
-            return "https://ui-avatars.com/api/?name={$name}";
-        }
+        return Blockpc::image_profile($user);
     }
 }

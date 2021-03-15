@@ -11,8 +11,8 @@ class BlogController extends Controller
 {
     public function index()
     {
-        $posts = Post::with('tags')->latest()->simplePaginate(5);
-        $latest = Post::with('tags')->latest()->take(5)->get();
+        $posts = Post::Published()->with('tags')->latest()->simplePaginate(5);
+        $latest = Post::Published()->with('tags')->latest()->take(5)->get();
         $categories = Category::withCount('posts')->get();
         $tags = Tag::withCount('posts')->get();
         return view('blog.index', compact('posts', 'latest', 'categories', 'tags'));
@@ -28,7 +28,7 @@ class BlogController extends Controller
 
     public function category(Category $category)
     {
-        $posts = Post::whereCategoryId($category->id)->simplePaginate(5);
+        $posts = Post::Published()->whereCategoryId($category->id)->simplePaginate(5);
         $categories = Category::withCount('posts')->get();
         $tags = Tag::withCount('posts')->get();
         return view('blog.category', compact('category', 'posts', 'categories', 'tags'));
@@ -36,7 +36,7 @@ class BlogController extends Controller
 
     public function tag(Tag $tag)
     {
-        $posts = Post::whereHas('tags', function($query) use ($tag) {
+        $posts = Post::Published()->whereHas('tags', function($query) use ($tag) {
             $query->whereTagId($tag->id);
         })->simplePaginate(5);
         $categories = Category::withCount('posts')->get();

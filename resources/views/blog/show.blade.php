@@ -19,7 +19,7 @@
                 <a class="text-sm font-semibold p-1 mx-2" href="{{ route('blog.categories', $post->category) }}">{{$post->category->name}}</a>
             </div>
             <section class="w-full md:w-9/12 xl:w-10/12">
-                <p class="text-xs font-bold mb-2 text-gray-700">{{$post->created_at->format('j F, Y')}}</p>
+                <p class="text-xs font-bold mb-2 text-gray-700">{{$post->updated_at->format('j F, Y')}}</p>
                 <h1 class="text-3xl lg:text-4xl font-bold pb-2 text-gray-200">
                     {{$post->title}}
                 </h1>
@@ -41,17 +41,7 @@
                 @if ($item->title)
                     <h3 class="text-lg sm:text-xl font-semibold mb-1">{{Str::title($item->title)}}</h3>
                 @endif
-                @if ( $item->type->id == 2)
-                    {{-- codigo 2 --}}
-                    <div>{!! html_entity_decode($item->type->start) !!}{{$item->content}}{!! html_entity_decode($item->type->end) !!}</div>
-                @elseif ( $item->type->id == 4)
-                    {{-- imagen 4 --}}
-                    <div>{!! html_entity_decode($item->type->start) !!}<img class="object-contain h-48 w-full" src="{{$item->content}}" />{!! html_entity_decode($item->type->end) !!}</div>
-                @else
-                    {{-- parrafo 1 --}}
-                    {{-- cita 2 --}}
-                    <div>{!! html_entity_decode($item->type->start) !!}{!! nl2br($item->content) !!}{!! html_entity_decode($item->type->end) !!}</div>
-                @endif
+                <div>{!! html_entity_decode($item->type->start) !!}{!!Blockpc::parse($item->type->id, $item->content)!!}{!! html_entity_decode($item->type->end) !!}</div>
                 @if ($item->legend)
                     <div class="flex justify-center mt-1">
                         <span class="text-xs sm:text-sm font-thin mb-1">{{Str::title($item->legend)}}</span>

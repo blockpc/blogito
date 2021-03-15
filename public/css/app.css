@@ -32499,27 +32499,6 @@ th {
   color: rgba(6, 95, 70, var(--tw-text-opacity));
 }
 
-blockquote {
-  --tw-bg-opacity: 1;
-  background-color: rgba(229, 231, 235, var(--tw-bg-opacity));
-  --tw-border-opacity: 1;
-  border-color: rgba(75, 85, 99, var(--tw-border-opacity));
-  border-left-width: 4px;
-  font-size: 0.875rem;
-  line-height: 1.25rem;
-  padding-top: 0.75rem;
-  padding-bottom: 0.75rem;
-  padding-left: 0.75rem;
-  font-style: italic;
-}
-
-@media (min-width: 768px) {
-  blockquote {
-    font-size: 1rem;
-    line-height: 1.5rem;
-  }
-}
-
 .image {
   padding: 0.25rem;
 }

@@ -28,7 +28,7 @@
                 <dl>
                     <dt class="sr-only">{{__('Published on')}}</dt>
                     <dd class="text-sm sm:text-base leading-6 font-medium text-gray-500">
-                        <time datetime="2021-03-08T19:00:00.0Z">{{$item->created_at->format('j F, Y')}}</time>
+                        <time datetime="2021-03-08T19:00:00.0Z">{{$item->published_at->format('j F, Y')}}</time>
                     </dd>
                 </dl>
                 <div class="space-y-5 sm:col-span-3">

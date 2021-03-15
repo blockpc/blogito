@@ -18,9 +18,8 @@ class CreatePostsTable extends Migration
             $table->string('title')->unique();
             $table->string('url');
             $table->string('resume', 255)->nullable();
-            //$table->string('iframe')->nullable();
             $table->string('image')->nullable();
-            $table->timestamp('published_at')->nullable();
+            $table->date('published_at')->nullable();
             $table->foreignId('owner_id')->constrained('users')->onDelete('cascade');
             $table->timestamps();
         });

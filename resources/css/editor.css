@@ -15,9 +15,6 @@
 .bg-success {
     @apply bg-green-300 text-green-800 p-1;
 }
-blockquote {
-    @apply border-l-4 border-gray-600 pl-3 py-3 bg-gray-200 text-sm md:text-base italic;
-}
 .image {
     @apply p-1;
 }

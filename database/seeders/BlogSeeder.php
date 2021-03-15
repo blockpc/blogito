@@ -18,10 +18,32 @@ class BlogSeeder extends Seeder
      */
     public function run()
     {
-        Type::create(['name' => 'parrafo', 'start' => '<p>', 'end' => '</p>']);
-        Type::create(['name' => 'codigo', 'start' => '<pre><code>', 'end' => '</code></pre>']);
-        Type::create(['name' => 'cita', 'start' => '<blockquote>', 'end' => '</blockquote>']);
-        Category::create(['name' => 'laravel', 'description' => 'Laravel es un framework de código abierto para desarrollar aplicaciones y servicios web con PHP']);
+        Type::create([
+            'name' => 'parrafo', 
+            'description' => 'Contenido de texto', 
+            'start' => '<p>', 
+            'end' => '</p>'
+        ]);
+        Type::create([
+            'name' => 'codigo', 
+            'description' => 'Contenido de código', 
+            'start' => '<pre><code>', 
+            'end' => '</code></pre>'
+        ]);
+        Type::create([
+            'name' => 'cita', 
+            'description' => "Texto de cita|Autor de la cita", 
+            'start' => '<blockquote>', 
+            'end' => '</blockquote>'
+        ]);
+        Type::create([
+            'name' => 'lista', 
+            'description' => "Conjunto de cadenas de caracteres separadas por '|'", 
+            'start' => '<div class="py-3 text-sm">', 
+            'end' => '</div>'
+        ]);
+        Category::create(['name' => 'laravel', 'description' => 
+        'Laravel es un framework de código abierto para desarrollar aplicaciones y servicios web con PHP']);
         Category::create(['name' => 'PHP', 'description' => 'PHP es un lenguaje de programación de uso general que se adapta especialmente al desarrollo web']);
         Category::create(['name' => 'MySQL', 'description' => 'MySQL es un sistema de gestión de bases de datos relacional']);
         Category::create(['name' => 'MariaDB', 'description' => 'MariaDB es un sistema de gestión de bases de datos derivado de MySQL con licencia GPL']);
@@ -34,6 +56,8 @@ class BlogSeeder extends Seeder
         Post::factory()->count(11)->create()->each(function ($post) {
             $cuantos = random_int(2,5);
             $post->blocks()->saveMany(Block::factory()->count($cuantos)->make());
+            $tags = Tag::inRandomOrder()->limit($cuantos)->get();
+            $post->tags()->sync($tags);
         });
     }
 }

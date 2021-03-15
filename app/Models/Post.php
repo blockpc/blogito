@@ -16,7 +16,9 @@ class Post extends Model
         'title', 'url', 'category_id', 'resume', 'published_at', 'user_id'
     ];
 
-    protected $dates = ['published_at'];
+    protected $casts = [
+        'published_at' => 'date:Y-m-d'
+    ];
 
     protected static function boot()
     {
@@ -51,6 +53,16 @@ class Post extends Model
     public function owner()
     {
         return $this->belongsTo(User::class, 'owner_id');
+    }
+
+    public function scopePublished($query)
+    {
+        return $query->whereNotNull('published_at');
+    }
+
+    public function scopeNotPublished($query)
+    {
+        return $query->whereNull('published_at');
     }
 
     public function setTitleAttribute($title)

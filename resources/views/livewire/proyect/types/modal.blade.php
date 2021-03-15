@@ -20,6 +20,11 @@
                             @error('type.name') <span class="text-error">{{ $message }}</span> @enderror
                         </div>
                         <div class="block px-4 pb-2">
+                            <label for="description" class="label">{{__('Description')}}</label>
+                            <textarea wire:model.lazy="type.description" name="description" id="description" class="input-form @error('type.description') is-invalid @enderror" placeholder="{{__('Description')}}"></textarea>
+                            @error('type.description') <span class="text-error">{{ $message }}</span> @enderror
+                        </div>
+                        <div class="block px-4 pb-2">
                             <label for="start" class="label">{{__('Start')}}</label>
                             <input wire:model.lazy="type.start" type="text" name="start" id="start" class="input-form @error('type.start') is-invalid @enderror" placeholder="{{__('Start')}}">
                             @error('type.start') <span class="text-error">{{ $message }}</span> @enderror

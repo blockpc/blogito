@@ -106,7 +106,9 @@
 </div>
 
 @push('scripts')
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.8/clipboard.min.js"></script>
     <script>
+        new ClipboardJS('.copy');
         function eliminar(id) {
             fetch('/sistema/dropzone/destroy', {
                 method: 'POST',
@@ -129,13 +131,5 @@
                 console.error('finally delete image')
             })
         }
-        // let file = document.getElementById('photos').files[0];
-        // @this.uploadMultiple('photos', [file], (uploadedFilename) => {
-        //     console.log(uploadedFilename)
-        // }, (error) => {
-        //     console.log(error)
-        // }, (event) => {
-        //     console.log(event)
-        // })
     </script>
 @endpush

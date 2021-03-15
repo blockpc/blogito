@@ -162,6 +162,8 @@ return [
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
 
+        App\Providers\BlockpcServiceProvider::class,
+
         /*
          * Package Service Providers...
          */
@@ -232,6 +234,7 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
 
         'Date' => Jenssegers\Date\Date::class,
+        'Blockpc' => App\Helpers\Blockpc::class,
     ],
 
 ];

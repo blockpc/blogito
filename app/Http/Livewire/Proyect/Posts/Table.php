@@ -13,7 +13,9 @@ class Table extends Component
     public $search = "", $paginate = 5;
     public $color = "primary", $texto = "New Article", $modal, $preview;
 
-    public $title, $resume;
+    public $title, $resume, $published;
+
+    public $sortField = "title", $sortDirection = 'asc';
 
     public User $user;
     public Post $post;
@@ -25,6 +27,7 @@ class Table extends Component
         $this->user = $user;
         $this->modal = 0;
         $this->post = new Post;
+        $this->published = 0;
         $this->preview = 0;
         $this->title = "";
         $this->resume = "";
@@ -32,7 +35,21 @@ class Table extends Component
 
     public function getPostsProperty()
     {
-        return Post::withCount(['blocks', 'images'])->whereLike('title', $this->search)->paginate($this->paginate);
+        $posts = $this->published ? Post::Published() : Post::NotPublished();
+        return $posts->withCount(['blocks', 'images', 'tags'])
+            ->whereLike('title', $this->search)
+            ->orderBy($this->sortField, $this->sortDirection)
+            ->paginate($this->paginate);
+    }
+
+    public function sortBy($field)
+    {
+        if ( $this->sortField === $field ) {
+            $this->sortDirection = ( $this->sortDirection === 'asc') ? 'desc' : 'asc';
+        } else {
+            $this->sortDirection = 'asc';
+        }
+        $this->sortField = $field;
     }
 
     public function render()

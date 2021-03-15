@@ -12,6 +12,7 @@
             <thead>
                 <tr class="">
                     <th class="th">{{__('Name')}}</th>
+                    <th class="th">{{__('Description')}}</th>
                     <th class="th text-center">{{__('Start')}}</th>
                     <th class="th text-center">{{__('End')}}</th>
                     <th class="th text-center">{{__('Count')}}</th>
@@ -22,6 +23,7 @@
                 @forelse ($types as $item)
                     <tr class="">
                         <td class="td">{{$item->name}}</td>
+                        <td class="td">{{$item->description}}</td>
                         <td class="td text-center">{{$item->start}}</td>
                         <td class="td text-center">{{$item->end}}</td>
                         <td class="td text-center">{{$item->block_count}}</td>

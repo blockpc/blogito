@@ -17,7 +17,7 @@
                     <input wire:model="image" type="file" name="image" id="image" class="w-full text-gray-700 px-3 py-2 border rounded @error('image') is-invalid @enderror">
                     @error('image') <span class="text-error">{{ $message }}</span> @enderror
                 </div>
-                @if ($post->image)
+                @if ($post->image || $image)
                     <div class="rounded-lg shadow-lg bg-blue-400 w-full h-64 flex flex-row flex-wrap p-3 antialiased" 
                     style="
                         background-image: url( @if($image) '{{ $image->temporaryUrl() }}' @else '{{ url($post->image) }}' @endif);
@@ -54,6 +54,11 @@
                     </div>
                     @error('tags') <span class="text-error">{{ $message }}</span> @enderror
                 </div>
+                <div class="block px-4 py-2">
+                    <label for="published_at" class="label mb-2">
+                    <input wire:model="published_at" type="checkbox" name="published_at" id="published_at"> {{__('Published')}}</label>
+                    @error('published_at') <span class="text-error">{{ $message }}</span> @enderror
+                </div>
                 <div class="py-2">
                     <button type="submit" class="btn-sm btn-update w-full">{{__('Update')}}</button>
                 </div>
@@ -65,7 +70,7 @@
 @push('scripts')
     <script>
     $(document).ready(function() {
-        $('#category2').select2();
+        $('#category2').select2({});
         $('#category2').on('change', function (e) {
             var data = $('#category2').select2("val");
             @this.set('post.category_id', data);

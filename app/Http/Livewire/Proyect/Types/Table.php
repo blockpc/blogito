@@ -95,6 +95,7 @@ class Table extends Component
     {
         $rules = [
             'type.name' => 'required|string|unique:types,name',
+            'type.description' => 'required|string|max:255',
             'type.start' => 'required|string',
             'type.end' => 'required|string',
         ];
@@ -106,6 +107,7 @@ class Table extends Component
 
     protected $validationAttributes = [
         'types.name' => 'nombre del bloque',
+        'types.description' => 'descripción',
         'types.start' => 'inicio',
         'types.end' => 'fin',
     ];
